@@ -1,0 +1,25 @@
+apiVersion: numaflow.numaproj.io/v1alpha1
+kind: Pipeline
+metadata:
+  name: simple-pipeline
+spec:
+  vertices:
+    - name: in
+      source:
+        # A self data generating source
+        generator:
+          rpu: 5
+          duration: 1s
+    - name: custom-map
+      udf:
+        container:
+          image: shubhamdixit863/rustnumamap:latest
+    - name: out
+      sink:
+        # A simple log printing sink
+        log: {}
+  edges:
+    - from: in
+      to: custom-map
+    - from: custom-map
+      to: out

@@ -1,0 +1,9 @@
+[package]
+name = "rust-numa-map"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+numaflow = { git = "https://github.com/shubhamdixit863/numaflow-rs", branch="main" }
+tonic = "0.11.0"
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
